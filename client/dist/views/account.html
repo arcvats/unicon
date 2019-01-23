@@ -1,0 +1,29 @@
+<div class="account hero is-info is-fullheight">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <div class="column notification is-danger is-one-third is-offset-one-third" ng-hide="AccountCtrl.userResponse.success">
+                <button class="delete" ng-click="AccountCtrl.userResponse.success=true"></button>
+                {{AccountCtrl.userResponse.message}}
+            </div>
+            <div class="column is-4 is-offset-4">
+                <div class="tabs is-toggle is-centered">
+                    <ul>
+                        <li ng-class="{'is-active':AccountCtrl.isLogin}">
+                            <a ng-click="AccountCtrl.isLogin=true">Login</a>
+                        </li>
+                        <li ng-class="{'is-active':!AccountCtrl.isLogin}">
+                            <a ng-click="AccountCtrl.isLogin=false">Signup</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="box">
+                    <figure class="avatar">
+                        <img style="height: 138px; width: 138px; background-color: #fafafa;" src="/images/account.png">
+                    </figure>
+                    <login ng-show="AccountCtrl.isLogin"></login>
+                    <register ng-show="!AccountCtrl.isLogin"></register>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

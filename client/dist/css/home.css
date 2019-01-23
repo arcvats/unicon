@@ -1,0 +1,316 @@
+@import url("https://fonts.googleapis.com/css?family=Pacifico");
+@import url("https://fonts.googleapis.com/css?family=Gentium+Basic");
+@import url("https://fonts.googleapis.com/css?family=Scope+One");
+@import url("https://fonts.googleapis.com/css?family=Quicksand:400,500");
+.pageloader {
+  display: none;
+}
+[ng-cloak].pageloader {
+  display: block !important;
+  height: 100%;
+  width: 100%;
+}
+.navbar-item {
+  font-family: $quicksand;
+  font-weight: 500;
+}
+.navbar-brand a {
+  font-family: 'Pacifico';
+  font-size: 1.5em;
+  margin-left: 1em;
+}
+.footer {
+  background-color: #363636;
+}
+.footer i {
+  font-size: 2em;
+}
+.footer .content {
+  padding: 0 1.5em 0 1.5em;
+  color: #fff;
+}
+.footer .content h4 {
+  font-family: 'Quicksand';
+  font-weight: 500;
+  color: #fff;
+}
+.footer .content p {
+  font-family: 'Quicksand';
+  text-align: left;
+}
+.footer .content p a {
+  color: #fff;
+}
+.footer .content p:hover {
+  color: #fafafa;
+}
+.footer .content .copy {
+  text-align: center;
+}
+.hero {
+  background-image: url("/images/ride-header.jpg");
+  -webkit-box-shadow: inset 9999px 0px 0px rgba(0,0,0,0.3);
+  box-shadow: inset 9999px 0px 0px rgba(0,0,0,0.3);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.hero h1.title {
+  font-family: 'Scope One';
+  font-size: 5em;
+  color: #fff;
+}
+.hero h2.subtitle {
+  font-family: 'Quicksand';
+  color: #fff;
+  font-size: 2em;
+  margin-left: 1em;
+}
+.feature {
+  background-image: url("/images/green.jpg");
+  background-attachment: fixed;
+}
+.feature .columns {
+  padding: 1.5em;
+}
+.feature .columns h2 {
+  font-family: 'Scope One';
+  font-size: 2em;
+}
+.feature .columns p {
+  font-family: 'Quicksand';
+  font-size: 1.2em;
+  text-align: justify;
+}
+.feature .columns .box {
+  max-width: 70%;
+}
+.about {
+  background-image: url("/images/green.jpg");
+}
+.account.hero {
+  background-image: url("/images/green.jpg");
+  background-size: auto auto;
+  background-repeat: repeat;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.account.hero .button {
+  width: 100%;
+}
+.account.hero .label {
+  text-align: left;
+}
+.account.hero .box {
+  margin-top: 60px;
+}
+.account.hero .avatar {
+  margin-top: -70px;
+  padding-bottom: 20px;
+}
+.account.hero .avatar img {
+  padding: 5px;
+  background: #fff;
+  border-radius: 50%;
+  -webkit-box-shadow: 0 2px 3px rgba(10,10,10,0.1), 0 0 0 1px rgba(10,10,10,0.1);
+  box-shadow: 0 2px 3px rgba(10,10,10,0.1), 0 0 0 1px rgba(10,10,10,0.1);
+}
+.rideshare {
+  background-image: url("/images/green.jpg");
+  background-size: auto auto;
+  background-repeat: repeat;
+  padding-top: 10px;
+}
+.rideshare .rideshare-wrapper {
+  margin: 10px;
+}
+.rideshare .rideshare-wrapper .other-rides h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+  font-family: 'Scope One';
+  margin-top: 10px;
+}
+.rideshare .rideshare-wrapper .other-rides table td {
+  text-transform: capitalize;
+  padding: 15px 50px 15px 50px;
+}
+.rideshare .rideshare-wrapper .all-rides table td {
+  text-transform: capitalize;
+}
+.rideshare .rideshare-wrapper .all-rides>p {
+  margin-bottom: 15px;
+}
+.rideshare .rideshare-wrapper .single-ride p {
+  text-align: right;
+}
+.dashboard {
+  background-image: url("/images/green.jpg");
+  background-size: auto auto;
+  background-repeat: repeat;
+  padding-top: 10px;
+}
+.dashboard .dashboard-wrapper {
+  margin: 10px;
+}
+.dashboard .dashboard-wrapper h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+  font-family: 'Scope One';
+}
+.dashboard .dashboard-wrapper span {
+  margin-left: 5px;
+}
+.dashboard .dashboard-wrapper .all-requests h2 {
+  text-align: left;
+  font-family: 'Quicksand';
+}
+.dashboard .dashboard-wrapper .all-requests button {
+  margin: 5px;
+}
+.dashboard .dashboard-wrapper .all-requests .collaborating-on {
+  text-align: center;
+  font-family: 'Scope One';
+}
+.community {
+  background-image: url("/images/green.jpg");
+  background-size: auto auto;
+  background-repeat: repeat;
+  padding-top: 10px;
+}
+.community .community-wrapper {
+  margin: 10px;
+}
+.community .community-wrapper h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+  font-family: 'Scope One';
+}
+.community .community-wrapper table h2 {
+  font-family: 'Quicksand';
+  font-weight: normal;
+}
+.community .community-wrapper table td {
+  padding: 10px;
+}
+.community .all-communities .community-members {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: start;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  clear: both;
+}
+.community .all-communities .community-members .box {
+  margin-left: 10px;
+}
+.community .all-communities .community-members b {
+  font-family: 'Quicksand';
+  font-size: 14px;
+}
+.community .all-communities .community-members table td {
+  border: none;
+}
+.community .all-communities .community-members table h2 {
+  font-weight: bold;
+  font-family: 'Quicksand';
+}
+.community .all-communities .community-members table h3 {
+  font-weight: normal;
+  font-family: 'Quicksand';
+}
+.community .all-communities .community-name {
+  text-align: left;
+  float: left;
+}
+.community .all-communities .community-right {
+  background-color: $light;
+}
+.ideas {
+  background-image: url("/images/green.jpg");
+  background-size: auto auto;
+  background-repeat: repeat;
+  padding-top: 10px;
+}
+.ideas .ideas-wrapper {
+  margin: 10px;
+}
+.ideas .ideas-wrapper h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+  font-family: 'Scope One';
+}
+.ideas .ideas-wrapper .all-ideas h2 {
+  text-align: left;
+  font-family: 'Quicksand';
+}
+.ideas .ideas-wrapper .all-ideas h4 {
+  margin-top: 10px;
+  font-family: 'Scope One';
+}
+.ideas .ideas-wrapper .all-ideas span {
+  margin-left: 5px;
+}
+.ideas .idea-tile>.box {
+  background-color: #f5f5f5;
+}
+.ideas .ideas-modal .card {
+  padding: 20px;
+  max-height: 600px;
+  overflow: scroll;
+}
+.ideas .ideas-modal .card .boxes {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+.ideas .ideas-modal .card .box {
+  margin: 5px;
+  max-width: 50%;
+}
+.ideas .ideas-modal .card p {
+  font-family: 'Quicksand';
+  color: #0a0a0a;
+}
+.ideas .ideas-modal .card p span {
+  margin: 0 5px 0 5px;
+  min-height: 10px;
+  min-width: 10px;
+}
+.green {
+  background-color: #23d160;
+}
+.blue {
+  background-color: #209cee;
+}
+.yellow {
+  background-color: #ffdd57;
+}
+.breadcrumb a {
+  color: #0a0a0a;
+  font-family: 'Quicksand';
+  font-size: 1em;
+  font-weight: bold;
+}
+.breadcrumb li.is-active a {
+  color: #fff;
+}
+@media screen and (max-width: 768px) {
+  .feature .columns .box {
+    min-width: 100%;
+  }
+  .rideshare aside {
+    position: static;
+    margin: 10px;
+  }
+  .rideshare .rides-wrapper {
+    margin: 10px;
+  }
+}

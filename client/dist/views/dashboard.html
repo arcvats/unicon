@@ -1,0 +1,106 @@
+<div class="dashboard">
+    <div class="dashboard-wrapper">
+        <div class="breadcrumb has-bullet-separator is-right" aria-label="breadcrumbs">
+            <ul>
+                <li class="is-active">
+                    <a href="#" aria-current="page">Dashboard Home</a>
+                </li>
+                <li>
+                    <a ng-href="/ideas">Ideas</a>
+                </li>
+                <li>
+                    <a href="/communities">Communities</a>
+                </li>
+            </ul>
+        </div>
+        <div class="tile is-ancestor">
+            <div class="tile is-vertical is-8">
+                <div class="tile is-vertical">
+                    <div class="tile is-parent">
+                        <article class="tile is-child box">
+                            <h2>Profile</h2>
+                            <button class="button is-info" ng-click="DashboardCtrl.toggleIsEditable()">Click here to Edit Profile</button>
+                            <form ng-submit="DashboardCtrl.saveProfile()">
+                                <div class="field">
+                                    <label class="label">Name</label>
+                                    <div class="control">
+                                        <input type="text" class="input is-medium" ng-disabled="!DashboardCtrl.isEditable" ng-model="DashboardCtrl.profile.name"
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label class="label">Department</label>
+                                    <div class="control">
+                                        <input type="text" class="input is-medium" ng-disabled="!DashboardCtrl.isEditable" ng-model="DashboardCtrl.profile.department"
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label class="label">College</label>
+                                    <div class="control">
+                                        <input type="text" class="input is-medium" ng-disabled="true" ng-model="DashboardCtrl.college">
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label class="label">Program</label>
+                                    <div class="control">
+                                        <input type="text" class="input is-medium" ng-disabled="!DashboardCtrl.isEditable" ng-model="DashboardCtrl.profile.course"
+                                            required>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="tag is-rounded is-primary" ng-repeat="tag in DashboardCtrl.profile.tags">{{tag}}
+                                        <button class="delete is-small" ng-click="DashboardCtrl.deleteTag(tag)"></button></span>
+                                </div>
+                                <div class="field">
+                                    <label class="label">Tags</label>
+                                    <div class="control">
+                                        <div class="select">
+                                            <select ng-model="DashboardCtrl.tag" ng-disabled="!DashboardCtrl.isEditable" ng-options="x for (x,y) in DashboardCtrl.tagNames"
+                                                ng-change="DashboardCtrl.tagSelected()">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="control">
+                                        <input type="submit" class="button is-block is-success is-medium" ng-disabled="!DashboardCtrl.isEditable" value="Save">
+                                    </div>
+                                </div>
+                            </form>
+                        </article>
+                    </div>
+                </div>
+            </div>
+            <div class="tile is-parent">
+                <article class="tile is-child box">
+                    <h2 ng-show="DashboardCtrl.pendingRequests.length>0">Pending Requests</h2>
+                    <div class="all-requests">
+                        <div class="box content" ng-repeat="idea in DashboardCtrl.pendingRequests">
+                            <h2>{{idea.title | uppercase}}</h2>
+                            <blockquote>{{idea.description}}</blockquote>
+                            <div>
+                                <span class="tag is-rounded is-primary" ng-repeat="collab_tag in idea.tags">{{collab_tag}}</span>
+                            </div>
+                            <button style="display: inline !important;margin-left:60%;" class="button is-block is-info is-small" ng-click="DashboardCtrl.approveRequest(idea._id)">Approve</button>
+                            <button style="display: inline !important;" class="button is-block is-danger is-small" ng-click="DashboardCtrl.rejectRequest(idea._id)">Reject</button>
+                        </div>
+                        <h2 class="collaborating-on" ng-show="DashboardCtrl.collaboratingOn.length>0">Collaborating On</h2>
+                        <div class="box content" ng-repeat="idea in DashboardCtrl.collaboratingOn">
+                            <h2>{{idea.title | uppercase}}</h2>
+                            <blockquote>{{idea.description}}</blockquote>
+                            <div>
+                                <span class="tag is-rounded is-primary" ng-repeat="collab_tag in idea.tags">{{collab_tag}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-hide="DashboardCtrl.pendingRequests.length>0">
+                            <div class="notification is-info">
+                                    <p>No ideas for collaboration.</p>
+                            </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</div>

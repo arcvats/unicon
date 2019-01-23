@@ -1,0 +1,20 @@
+<div class="about" align="center" style="min-height: 100vh;padding-bottom: 40px;padding-top:10vh;">
+        <div class="box" ng-show="!AboutCtrl.success" style="margin-top:30vh;max-width: 60vw;">
+        <h2 style="font-size: 1.2em;">Welcome to unicon, please subscribe to get our business card and information deck.</h2>
+        <form name="subscribeForm" ng-submit="AboutCtrl.subscribe()">
+        
+        <div class="field">
+                <div class="control">
+                    <input class="input is-info" ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]*\.([a-z]{2,4})$/" ng-model="AboutCtrl.email" type="text" required placeholder="Subscribe with your email.">
+                </div>
+        </div>
+        <button class="button is-success" ng-disabled="subscribeForm.$invalid">Subscribe</button>
+    </form>
+    </div>
+    <div class="box" ng-show="AboutCtrl.success" style="margin-top:30vh;max-width: 60vw;">
+        <h2 class="information">
+            Thank you for subscribing. We have sent you our business card and information deck.
+        </h2>
+    </div>
+
+</div>

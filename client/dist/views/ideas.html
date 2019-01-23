@@ -1,0 +1,105 @@
+<div class="ideas">
+<div class="ideas-wrapper">
+        <div class="modal ideas-modal" ng-class="{'is-active':IdeasCtrl.modalShow}">
+                <div class="modal-background"></div>
+                <div class="modal-content">
+                  <div class="card">
+                      <p><span class="tag is-success"></span>Best Match <span class="tag is-info"></span>Good Match <span class="tag is-warning"></span>Low Match</p>
+                        <div class="boxes">
+                            <div class="box" ng-class="{'green':$index<IdeasCtrl.collaborators.length*0.3,'blue':$index>=IdeasCtrl.collaborators.length*0.3&&$index<IdeasCtrl.collaborators.length*0.7,'yellow':$index>=IdeasCtrl.collaborators.length*0.7}" ng-repeat="student in IdeasCtrl.collaborators track by $index">
+                                <h2>{{student.name}}</h2>
+                                <h3>{{student.department}}</h3>
+                                <h3>{{student.course}}</h3>
+                                <p><span class="tag is-rounded is-dark" ng-repeat="tag in student.tags">{{tag}}</span></p>
+                                <br>
+                                <button class="button is-block is-light is-small" ng-click="IdeasCtrl.requestCollaboration(student.student_id)">Request Collaboration</button>
+                            </div>  
+                        </div>                    
+                  </div>
+                </div>
+                <button class="modal-close is-large" aria-label="close" ng-click="IdeasCtrl.toggleModal()"></button>
+        </div>
+        <div class="breadcrumb has-bullet-separator is-right" aria-label="breadcrumbs">
+                <ul>
+                    <li>
+                        <a ng-href="/dashboard">Dashboard Home</a>
+                    </li>
+                    <li class="is-active">
+                        <a ng-href="#">Ideas</a>
+                    </li>
+                    <li>
+                        <a href="/communities">Communities</a>
+                    </li>
+                </ul>
+            </div>
+    <div class="tile is-ancestor">
+        <div class="tile is-vertical is-8">
+            <div class="tile is-vertical">
+                <div class="tile is-parent">
+                    <article class="tile is-child box">
+                        <h2>Submit an Idea</h2>
+                        <form ng-submit="IdeasCtrl.save()" name="ideaForm">
+                            <div class="field">
+                                <label class="label">Title</label>
+                                <div class="control">
+                                    <input type="text" class="input is-medium" ng-model="IdeasCtrl.idea.title" required>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="label">Description</label>
+                                <div class="control">
+                                    <textarea class="textarea" ng-model="IdeasCtrl.idea.description" rows="7" required></textarea>
+                                </div>
+                            </div>
+                            <div>
+                                <span class="tag is-rounded is-primary" ng-repeat="tag in IdeasCtrl.idea.tags">{{tag}}<button class="delete is-small" ng-click="IdeasCtrl.deleteTag(tag)"></button>&nbsp;</span>
+                            </div>
+                            <div class="field">
+                                <label class="label">Tags</label>
+                                <div class="control">
+                                  <div class="select">
+                                    <select ng-model="IdeasCtrl.tag" ng-options="x for (x,y) in IdeasCtrl.tagNames" ng-change="IdeasCtrl.tagSelected()" required>
+                                    </select>
+                                  </div>
+                                </div>
+                              </div>
+                            <div class="field">
+                                <div class="control">
+                                    <input type="submit" class="button is-block is-success is-medium" ng-disabled="ideaForm.$invalid" value="Save">
+                                </div>
+                            </div>
+                        </form>
+                    </article>
+                </div>
+            </div>
+        </div>
+        <div class="tile is-parent idea-tile">
+            <article class="tile is-child box">
+                    <div class="notification is-danger" ng-show="IdeasCtrl.message!=''">
+                            <button class="delete" ng-click="IdeasCtrl.message=''"></button>
+                            {{IdeasCtrl.message}}
+                    </div>
+                <div class="all-ideas" ng-show="IdeasCtrl.allIdeas.length>0">
+                    <div class="box content" ng-repeat="idea in IdeasCtrl.allIdeas">
+                        <h2>{{idea.title | uppercase}}</h2>
+                        <blockquote>{{idea.description}}</blockquote>
+                        <div>
+                            <span class="tag is-rounded is-primary" ng-repeat="collab_tag in idea.tags">{{collab_tag}}</span>
+                        </div>
+                        <div>
+                            <h4>Collaborators</h4>
+                            <span class="tag is-dark" ng-repeat="collab in idea.collaborators">{{collab}}</span>
+                        </div>
+                        <button class="button is-block is-info is-small is-pulled-right" ng-click="IdeasCtrl.findCollaborators(idea._id)">Find Collaborators</button>
+                    </div>
+                </div>
+                <div class="all-ideas" ng-hide="IdeasCtrl.allIdeas.length>0">
+                        <div class="notification is-info">
+                            <p>No ideas to display.</p>
+                        </div>
+                </div>
+            </article>
+        </div>
+    </div>
+</div>
+</div>

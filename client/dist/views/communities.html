@@ -1,0 +1,144 @@
+<div class="modal" ng-class="{'is-active':CommunityCtrl.isActiveMeetup}">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+        <div class="box">
+            <form name="meetupForm">
+                <div class="field">
+                    <label class="label">Topic</label>
+                    <div class="control">
+                        <input type="text" class="input is-medium" ng-model="CommunityCtrl.meetup.topic" required>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Description</label>
+                    <div class="control">
+                        <input type="text" class="input is-medium" ng-model="CommunityCtrl.meetup.description" required>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Date & Time</label>
+                    <div class="control">
+                        <input type="datetime-local" class="input is-medium" ng-model="CommunityCtrl.meetup.time"
+  placeholder="yyyy-MM-ddTHH:mm:ss" min="{{CommunityCtrl.today}}" max="2020-12-31T00:00:00" required />
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <button ng-click="CommunityCtrl.createMeetup()" ng-disabled="meetupForm.$invalid" class="button is-block is-info is-medium">Create</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <button class="modal-close is-large" ng-click="CommunityCtrl.toggleModal()" aria-label="close"></button>
+</div>
+<div class="community">
+    <div class="community-wrapper">
+        <div class="breadcrumb has-bullet-separator is-right" aria-label="breadcrumbs">
+            <ul>
+                <li>
+                    <a ng-href="/dashboard">Dashboard Home</a>
+                </li>
+                <li>
+                    <a ng-href="/ideas">Ideas</a>
+                </li>
+                <li class="is-active">
+                    <a href="/communities">Communities</a>
+                </li>
+            </ul>
+        </div>
+        <div class="tile is-ancestor">
+            <div class="tile is-vertical is-8">
+                <div class="tile is-vertical">
+                    <div class="tile is-parent">
+                        <article class="tile is-child box">
+                            <div class="all-communities" ng-show="CommunityCtrl.communities.length>0">
+                                <div class="content" ng-repeat="community in CommunityCtrl.communities">
+                                    <div>
+                                        <h2 class="community-name">{{community.name | uppercase}}</h2>
+                                        <p style="text-align: right;">
+                                            <button class="button is-small is-info" ng-click="CommunityCtrl.toggleModal(community.name)">Create {{community.name}} Meetup</button>
+                                        </p>
+                                    </div>
+                                    <div class="community-members">
+                                        <div class="box" ng-repeat="member in community.members">
+                                            <table>
+                                                <tr>
+                                                    <td>
+                                                        <b>Name</b>
+                                                    </td>
+                                                    <td>
+                                                        <h2>{{member.name}}</h2>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <b>Department</b>
+                                                    </td>
+                                                    <td>
+                                                        <h3>{{member.department}}</h3>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <b>Program</b>
+                                                    </td>
+                                                    <td>
+                                                        <h3>{{member.course}}</h3>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-hide="CommunityCtrl.communities.length>0">
+                                <p>Fill your profile info to get yourself enrolled.</p>
+                            </div>
+                        </article>
+                    </div>
+
+                </div>
+            </div>
+            <div class="community-right tile is-parent idea-tile">
+                <article class="tile is-child box">
+                    <h2>Top Communities</h2>
+                    <div class="top-communities">
+                        <div class="notification is-info" ng-hide="CommunityCtrl.topCommunities.length>0">
+                            <p>No communities to display</p>
+                        </div>
+                        <div ng-show="CommunityCtrl.topCommunities.length>0" align="center">
+                            <table>
+                                <tr ng-repeat="community in CommunityCtrl.topCommunities" ng-show="$index<5">
+                                    <td style="text-align: left;">
+                                        <h2>{{$index+1}}</h2>
+                                    </td>
+                                    <td>
+                                        <h2 style="text-align: left;">{{community.name}}</h2>
+                                    </td>
+                                    <td style="text-align: right;">
+                                        <span class="tag is-medium" ng-class="{'is-info':$index<2,'is-success':$index>=2}">{{community.members.length}} Members</span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <h2>Upcoming Meetups</h2>
+                    <div>
+                            <div class="notification is-info" ng-hide="CommunityCtrl.meetups.length>0">
+                                    <p>No meetups to display</p>
+                                </div>
+                                <div ng-show="CommunityCtrl.meetups.length>0">
+                                    <div class="box content" ng-repeat="meetup in CommunityCtrl.meetups">
+                                        <h3>{{meetup.topic}}</h3>
+                                        <blockquote>{{meetup.description}}</blockquote>
+
+                                        <p><b>Date</b>&nbsp;{{meetup.time.split('T')[0]}}</p><p><b>Time</b>&nbsp;{{meetup.time.split('T')[1].split('.')[0]}}</p>
+                                    </div>
+                                </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="unicon" class="has-navbar-fixed-top">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <base href="/">
+    <title>unicon</title>
+    <link rel="icon" href="/images/u-icon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/bulma-pageloader.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular-route.js"></script>
+</head>
+
+<body ng-controller="MainController as MainCtrl">
+    <div class="pageloader is-info is-active" ng-cloak><span class="title">Unicon</span></div>
+    <div class="wrapper" ng-cloak>
+        <header class="navbar is-fixed-top is-link">
+            <div class="container">
+                <div class="navbar-brand">
+                    <a href="#" class="navbar-item">unicon</a>
+                    <span class="navbar-burger burger" ng-class="{'is-active':MainCtrl.mobileActivated}" ng-click="MainCtrl.toggleNav()">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                </div>
+            </div>
+            <div class="navbar-menu" ng-class="{'is-active':MainCtrl.mobileActivated}">
+                <div class="navbar-end">
+                    <a ng-href="#" class="navbar-item" ng-show="MainCtrl.isLoggedIn">Hello {{MainCtrl.email}}</a>
+                    <a ng-href="/" class="navbar-item">Home</a>
+                    <a ng-href="/dashboard" class="navbar-item">Dashboard</a>
+                    <a ng-href="/rideshare" class="navbar-item">Rideshare</a>
+                    <a ng-href="/about" class="navbar-item">About</a>
+                    <a ng-href="/account" class="navbar-item" ng-show="!MainCtrl.isLoggedIn">Login/Signup</a>
+                    <a ng-href="/account" ng-click="MainCtrl.logout()" ng-show="MainCtrl.isLoggedIn" class="navbar-item">Logout</a>
+                </div>
+            </div>
+        </header>
+        <section class="main-content" ng-view>
+        </section>
+        <footer class="footer">
+            <div class="container">
+                <div class="level is-desktop">
+                    <div class="level-left">
+                        <div class="level-item">
+                            <div class="content has-text-centered">
+                                <h4>DASHBOARD</h4>
+                                <p><a ng-href="/dashboard">Profile</a></p>
+                                <p><a ng-href="/dashboard">Notifications</a></p>
+                                <p><a ng-href="/rideshare">Rides Data</a></p>
+                            </div>
+                        </div>
+                        <div class="level-item">
+                            <div class="content has-text-centered">
+                                <h4>RIDESHARE</h4>
+                                <p><a ng-href="/rideshare">Search</a></p>
+                                <p><a ng-href="/rideshare">Booked Rides</a></p>
+                                <p><a ng-href="/rideshare#offered-rides">Offered Rides</a></p>
+                            </div>
+                        </div>
+                        <div class="level-item">
+                            <div class="content has-text-centered">
+                                <h4>IDEAS & COMMUNITIES</h4>
+                                <p><a ng-href="/ideas">Ideas</a></p>
+                                <p><a ng-href="/communities">Communities</a></p>
+                                <p><a ng-href="/communities">Meetups</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="level-right">
+                        <div class="content level-item">
+                            <span class="icon is-large">
+                                <i class="fa fa-facebook"></i>
+                            </span>
+                            <span class="icon is-large">
+                                <i class="fa fa-twitter"></i>
+                            </span>
+                            <span class="icon is-large">
+                                <i class="fa fa-instagram"></i>
+                            </span>
+                            <span class="icon is-large">
+                                <i class="fa fa-linkedin"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="content has-text-centered">
+                    <p class="copy">&copy;Unicon 2018</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="/js/unicon.js"></script>
+    <script src="/js/routes.js"></script>
+    <script src="/js/directives.js"></script>
+    <script src="/js/services.js"></script>
+    <script src="/js/controllers/MainController.js"></script>
+    <script src="/js/controllers/HomeController.js"></script>
+    <script src="/js/controllers/AccountController.js"></script>
+    <script src="/js/controllers/RideshareController.js"></script>
+    <script src="/js/controllers/DashboardController.js"></script>
+    <script src="/js/controllers/IdeasController.js"></script>
+    <script src="/js/controllers/ResourcesController.js"></script>
+    <script src="/js/controllers/CommunityController.js"></script>
+    <script src="/js/controllers/AboutController.js"></script>
+</body>
+
+</html>

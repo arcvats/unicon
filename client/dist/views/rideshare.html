@@ -1,0 +1,168 @@
+<div class="modal" ng-class="{'is-active':RideshareCtrl.createActive}">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+        <div class="box">
+            <form name="rideForm">
+                <div class="field">
+                    <label class="label">Departure</label>
+                    <div class="control">
+                        <input type="text" class="input is-medium" ng-model="RideshareCtrl.departure" required>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Destination</label>
+                    <div class="control">
+                        <input type="text" class="input is-medium" ng-model="RideshareCtrl.destination" required>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Time</label>
+                    <div class="control">
+                        <input type="text" class="input is-medium" ng-model="RideshareCtrl.time" required>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Passengers</label>
+                    <div class="control">
+                        <input type="text" class="input is-medium" ng-model="RideshareCtrl.passengers" required>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <button ng-click="RideshareCtrl.createRide()" ng-disabled="rideForm.$invalid" class="button is-block is-info is-medium">Create</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <button class="modal-close is-large" ng-click="RideshareCtrl.toggleRideModal()" aria-label="close"></button>
+</div>
+
+<div class="rideshare">
+    <div class="rideshare-wrapper">
+
+        <div class="tile is-ancestor">
+            <div class="tile is-vertical is-8">
+                <div class="tile is-vertical">
+                    <div class="tile is-parent">
+                        <article class="tile is-child box">
+                            <div class="all-rides" ng-show="RideshareCtrl.allRides.length>0">
+                                <p class="control has-icons-left">
+                                    <input class="input is-medium is-info" type="text" placeholder="Search a ride" ng-model="RideshareCtrl.search">
+                                    <span class="icon is-small is-left">
+                                        <i class="fa fa-search"></i>
+                                    </span>
+                                </p>
+                                <div class="content box" ng-repeat="ride in RideshareCtrl.allRides | filter:{destination:RideshareCtrl.search}" ng-hide="RideshareCtrl.userId==ride.userId">
+                                    <div class="single-ride">
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <b>Departure</b>
+                                                    <h4>{{ride.departure}}</h4>
+                                                </td>
+                                                <td>
+                                                    <b>Destination</b>
+                                                    <h4>{{ride.destination}}</h4>
+                                                </td>
+                                                <td>
+                                                    <b>Date</b>
+                                                    <h4>{{ride.time}}</h4>
+                                                </td>
+                                                <td style="text-align: center;">
+                                                    <b>Passengers</b>
+                                                    <h4>{{ride.passengers}}</h4>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <p>
+                                            <button class="button is-outlined is-success is-medium" ng-click="RideshareCtrl.bookRide(ride.id)">Book</button>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-hide="RideshareCtrl.allRides.length>0">
+                                <div class="notification is-info">
+                                    <p>No rides to display.</p>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+            <div class="tile is-parent idea-tile">
+                <article class="tile is-child box">
+                    <div class="other-rides">
+                        <button class="button is-success is-outlined is-fullwidth" ng-click="RideshareCtrl.toggleRideModal()">Create Ride</button>
+                        <h2>Booked Rides</h2>
+                        <div class="box is-primary" ng-repeat="bookedRide in RideshareCtrl.bookedRides">
+                                <div align="center">
+                                <table>
+                                        <tr>
+                                            <td>
+                                                <b>Departure</b>
+                                                <h4>{{bookedRide.departure}}</h4>
+                                            </td>
+                                            <td>
+                                                <b>Destination</b>
+                                                <h4>{{bookedRide.destination}}</h4>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <b>Date</b>
+                                                <h4>{{bookedRide.time}}</h4>
+                                            </td>
+                                            <td>
+                                                <b>Passengers</b>
+                                                <h4>{{bookedRide.passengers}}</h4>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <p>Offered By: <b>{{bookedRide.userId}}</b></p>
+                                    </div>
+                        </div>
+                        <div ng-hide="RideshareCtrl.bookedRides.length>0">
+                            <div class="notification is-info">
+                                <p>No booked rides to display.</p>
+                            </div>
+                        </div>
+                        <h2 id="offered-rides">Offered Rides</h2>
+                        <div class="box is-primary" ng-repeat="offeredRide in RideshareCtrl.offeredRides">
+                            <div align="center">
+                                <table>
+                                        <tr>
+                                            <td>
+                                                <b>Departure</b>
+                                                <h4>{{offeredRide.departure}}</h4>
+                                            </td>
+                                            <td>
+                                                <b>Destination</b>
+                                                <h4>{{offeredRide.destination}}</h4>
+                                            </td>
+                                        </tr>
+                                        <tr> 
+                                            <td>
+                                                <b>Date</b>
+                                                <h4>{{offeredRide.time}}</h4>
+                                            </td>
+                                            <td>
+                                                <b>Passengers</b>
+                                                <h4>{{offeredRide.passengers}}</h4>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <p ng-show="offeredRide.bookUserId">Booked By: <b>{{offeredRide.bookUserId}}</b></p>
+                                </div>
+                        </div>
+                        <div ng-hide="RideshareCtrl.offeredRides.length>0">
+                                <div class="notification is-info">
+                                    <p>No offered rides to display.</p>
+                                </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</div>

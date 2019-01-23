@@ -1,0 +1,40 @@
+<form name="registerForm" ng-submit="AccountCtrl.register()" novalidate>
+    <div class="field">
+        <label class="label">Email</label>
+        <div class="control has-icons-right">
+            <input class="input is-medium" type="text" placeholder="Enter Email" name="email" ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]*\.([a-z]{2,4})$/"
+                ng-model="AccountCtrl.user.email" ng-class="{'is-success':registerForm.email.$valid,'is-danger':registerForm.email.$invalid&&!registerForm.email.$pristine,'is-info':registerForm.email.$dirty}"
+                autofocus="" required>
+            <span class="icon is-medium is-right" ng-show="registerForm.email.$valid">
+                <i class="fa fa-check"></i>
+            </span>
+        </div>
+    </div>
+    <div class="field">
+        <label class="label">Password</label>
+        <div class="control has-icons-right">
+            <input class="input is-medium" type="password" name="password" placeholder="Enter Password" ng-model="AccountCtrl.user.password"
+                ng-class="{'is-success':registerForm.password.$valid,'is-danger':registerForm.password.$invalid&&!registerForm.password.$pristine,'is-info':registerForm.password.$dirty}"
+                required ng-minlength="7">
+            <span class="icon is-medium is-right" ng-show="registerForm.password.$valid">
+                <i class="fa fa-check"></i>
+            </span>
+        </div>
+    </div>
+    <div class="field">
+        <label class="label">Confirm Password</label>
+        <div class="control has-icons-right">
+            <input class="input is-medium" type="password" name="confPassword" placeholder="Confirm Password" ng-model="AccountCtrl.user.confPassword"
+                ng-class="{'is-success':registerForm.confPassword.$valid,'is-danger':registerForm.confPassword.$invalid&&!registerForm.confPassword.$pristine,'is-info':registerForm.confPassword.$dirty}"
+                required ng-minlength="7" ng-pattern="{{AccountCtrl.user.password}}">
+            <span class="icon is-medium is-right" ng-show="registerForm.confPassword.$valid">
+                <i class="fa fa-check"></i>
+            </span>
+        </div>
+    </div>
+    <div class="field">
+        <div class="control">
+            <input type="submit" class="button is-block is-info is-medium" ng-disabled="registerForm.$invalid" value="Register" ng-class="{'is-success':registerForm.$valid}">
+        </div>
+    </div>
+</form>
