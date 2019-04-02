@@ -5,17 +5,24 @@ var path = require("path");
 var mongoose = require("mongoose");
 var config = require("./config");
 var router = require("./api/routes");
-
-mongoose.connect(
-  config.database.local,
-  function(err) {
-    if (err) {
-      throw err;
-    } else {
-      console.log("Successfully connected to the database");
-    }
+var securebox = require("securebox");
+var sb = new securebox("asdfa", "http://localhost:3000", {
+  auth: true,
+  connectorConfig: {
+    type: "mqtt",
+    host: "127.0.0.1",
+    port: 1883
   }
-);
+});
+sb.dashboardMonitoring();
+
+mongoose.connect(config.database.local, function(err) {
+  if (err) {
+    throw err;
+  } else {
+    console.log("Successfully connected to the database");
+  }
+});
 
 app.use(express.static("client/dist"));
 app.use(bodyParser.urlencoded({ extended: false }));

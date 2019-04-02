@@ -16,7 +16,8 @@
     "js-yaml": "^3.10.0",
     "jsonwebtoken": "^8.1.1",
     "mongoose": "^4.13.10",
-    "request": "^2.83.0"
+    "request": "^2.83.0",
+    "securebox": "file:../securebox"
   },
   "devDependencies": {
     "gulp": "^3.9.1",

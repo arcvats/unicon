@@ -1,6 +1,7 @@
 var User = require("../models/user");
 var jwt = require("../helpers/jwt");
 var sgMail = require("@sendgrid/mail");
+var securebox = require("securebox");
 
 module.exports = {
   register: function(req, res) {
@@ -30,6 +31,8 @@ module.exports = {
     }
   },
   login: function(req, res) {
+    securebox.stackTrace();
+    securebox.startTimer();
     User.findOne({ email: req.body.email }).exec(function(err, user) {
       if (err) {
         throw err;
@@ -53,6 +56,7 @@ module.exports = {
         }
       }
     });
+    securebox.endTimer();
   },
   me: function(req, res) {
     res.send(req.decoded);
