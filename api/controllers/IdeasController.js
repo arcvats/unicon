@@ -1,7 +1,7 @@
 var config = require("../../config");
 var Ideas = require("../models/ideas");
 var Student = require("../models/student");
-var sb = require("securebox");
+
 Set.prototype.intersection = function(setB) {
   var intersection = new Set();
   for (var elem of setB) {
@@ -20,7 +20,6 @@ function compareTags(a, b) {
 
 module.exports = {
   save: function(req, res) {
-    sb.startTimer();
     var student_id = req.decoded.id;
     Ideas.count({ student_id: student_id }, function(err, count) {
       if (count < 4) {
@@ -41,10 +40,8 @@ module.exports = {
         res.send({ success: false, message: "Ideas limit reached." });
       }
     });
-    sb.endTimer();
   },
   all: function(req, res) {
-    sb.stackTrace();
     var student_id = req.decoded.id;
     Ideas.find({ student_id: student_id }, function(err, data) {
       if (err) {
