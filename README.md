@@ -50,13 +50,13 @@ In the config.js file-
 
 ```json
 {
-    port: "port for server",
-    database: {
-          local: "mongodb://url/unicon",
-          production: "url"
+    "port": "port for server",
+    "database": {
+          "local": "mongodb://url/unicon",
+          "production": "url"
     },
-    rideshare_api: "url if rideshare feature is needed",
-    secret: "secret for jwt"
+    "rideshare_api": "url if rideshare feature is needed",
+    "secret": "secret for jwt"
 }
 ```
 
